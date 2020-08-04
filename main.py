@@ -1,6 +1,7 @@
 import telebot
 import config
 import keybord
+import db_worker
 
 bot = telebot.TeleBot(config.TOKEN)
 
@@ -10,6 +11,8 @@ def main():
     def start_msg(message):
         """COMMAND START"""
         bot.send_message(message.chat.id, 'Приветствую Вас', reply_markup=keybord.key_board())
+        db_worker.adding_new_user(message, config.Query.insert_user, config.Query.select_user)
+        db_worker.update_state(message.chat.id, config.Query.update_state, config.State.S_START)
 
     @bot.message_handler(content_types=['text'])
     def send_msg(message):
