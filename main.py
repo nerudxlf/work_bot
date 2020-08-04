@@ -8,10 +8,12 @@ bot = telebot.TeleBot(config.TOKEN)
 def main():
     @bot.message_handler(commands=['start'])
     def start_msg(message):
-        bot.send_message(message.chat.id, 'Приветствую Вас', reply_markup=keybord.key_board_start)
+        """COMMAND START"""
+        bot.send_message(message.chat.id, 'Приветствую Вас', reply_markup=keybord.key_board())
 
     @bot.message_handler(content_types=['text'])
     def send_msg(message):
+        """BOT MENU"""
         if message.text.lower() == 'информация обо мне':
             bot.send_message(message.chat.id, 'Сообщение')
         elif message.text.lower() == 'оставить заявку':
@@ -20,7 +22,6 @@ def main():
             bot.send_message(message.chat.id, 'Помощь')
         elif message.text.lower() == 'контакты':
             bot.send_message(message.chat.id, 'Контакты')
-
 
     bot.polling()
 

@@ -2,3 +2,4 @@ config.py
 *.txt
 .idea/
 date_base/
+__pycache__/
