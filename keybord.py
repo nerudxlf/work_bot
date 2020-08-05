@@ -1,13 +1,27 @@
 from telebot import types
 
 
-def key_board():
+def keyboard_start():
     """
     function for add keyboard for bot
     :return: keyboard and it have 2 rows and 2 columns
     """
-    key_board_start = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    key_board_start.row('Оставить заявку')
-    key_board_start.row('Ифнормация обо мне')
-    key_board_start.add('Помощь', 'Контакты')
-    return key_board_start
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard.row('Оставить заявку')
+    keyboard.row('Ифнормация обо мне')
+    keyboard.add('Помощь', 'Контакты')
+    return keyboard
+
+
+def keyboard_admin():
+    """
+    function add keyboard for admin
+    :return: keyboard
+    """
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard.add('Обновить информацию обо мне',
+                 'Добавить контакты',
+                 'Изменить контакты',
+                 'Посмотреть заявки'
+                 )
+    return keyboard

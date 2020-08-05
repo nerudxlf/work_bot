@@ -10,9 +10,17 @@ def main():
     @bot.message_handler(commands=['start'])
     def start_msg(message):
         """COMMAND START"""
-        bot.send_message(message.chat.id, 'Приветствую Вас', reply_markup=keybord.key_board())
-        db_worker.adding_new_user(message, config.Query.insert_user, config.Query.select_user)
-        db_worker.update_state(message.chat.id, config.Query.update_state, config.State.S_START)
+        bot.send_message(message.chat.id, 'Приветствую Вас', reply_markup=keybord.keyboard_start())
+        db_worker.adding_new_user(message, config.Query.insert_user.value, config.Query.select_user.value)
+        db_worker.update_state(message.chat.id, config.Query.update_state.value, config.StateUser.S_START.value)
+
+    @bot.message_handler(commands=['admin'])
+    def check_admin_msg(message):
+        if str(message.chat.id) == config.ID_ADMIN:
+            bot.send_message(message.chat.id, 'Привет админ', reply_markup=keybord.keyboard_admin())
+            db_worker.update_state(message.chat.id, config.Query.update_state.value, config.StateAdmin.S_START.value)
+        else:
+            bot.send_message(message.chat.id, 'Вы не админ')
 
     @bot.message_handler(content_types=['text'])
     def send_msg(message):

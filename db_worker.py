@@ -47,7 +47,7 @@ def adding_new_user(message, sql_insert, sql_select):
     if not connect:
         return 0
     cursor = connect.cursor()
-    cursor.execute(sql_select, message.chat.id)
+    cursor.execute(sql_select, [message.chat.id])
     if not cursor.fetchall():
         cursor.execute(
             sql_insert, [
