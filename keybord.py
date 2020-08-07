@@ -19,9 +19,6 @@ def keyboard_admin():
     :return: keyboard
     """
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboard.add('Обновить информацию обо мне',
-                 'Добавить контакты',
-                 'Изменить контакты',
-                 'Посмотреть заявки'
-                 )
+
+    keyboard.add('Посмотреть заявки')
     return keyboard
